@@ -12,7 +12,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: '如何开始构建你的第一个"数字花园"',
+    title: '🌿 如何开始构建你的第一个"数字花园"',
     date: '2024-01-15',
     tags: ['#数字花园', '#思考', '#个人成长'],
     summary: '数字花园是一种新兴的知识管理和个人表达形式。与传统的博客不同，数字花园强调想法的持续生长和演化，而不是按时间顺序发布的 finished articles。在这篇文章中，我将分享构建数字花园的核心理念、工具选择以及起步的三个关键步骤。从选择合适的平台，到建立内容组织体系，再到养成持续耕耘的习惯，让我们一起开启这段数字种植之旅。',
@@ -21,7 +21,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: '2',
-    title: '在Vue.js项目中实践组件化设计的心得',
+    title: '⚡ 在Vue.js项目中实践组件化设计的心得',
     date: '2024-01-08',
     tags: ['#前端', '#Vue.js', '#组件化'],
     summary: '组件化是现代前端开发的核心理念之一。在最近的一个Vue.js项目中，我深入实践了组件化设计模式，从原子化设计思想出发，构建了可复用、可维护的组件库。本文将分享我在组件拆分、Props设计、事件通信以及状态管理方面的心得体会，探讨如何在实际项目中平衡组件的通用性与特异性。',
@@ -30,7 +30,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: '3',
-    title: '阅读笔记：《黑客与画家》带给我的启发',
+    title: '📖 阅读笔记：《黑客与画家》带给我的启发',
     date: '2024-01-02',
     tags: ['#读书', '#思考', '#编程'],
     summary: '保罗·格雷厄姆的《黑客与画家》是一本让我反复阅读的经典之作。书中关于黑客精神、创业思维、编程语言设计的观点，每一次阅读都有新的收获。这篇笔记整理了我最受启发的几个观点：为什么编程像绘画、如何创造财富、以及好设计的本质。这些思考不仅影响了我的编程实践，也塑造了我对产品和技术路线的理解。',
@@ -39,7 +39,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: '4',
-    title: 'Tailwind CSS 实战技巧总结',
+    title: '🎨 Tailwind CSS 实战技巧总结',
     date: '2024-01-25',
     tags: ['#前端', '#CSS', '#Tailwind'],
     summary: 'Tailwind CSS 是当下最流行的 CSS 框架之一，它的实用类优先理念彻底改变了我的样式编写方式。本文总结了我使用 Tailwind 的一些实战技巧，包括自定义配置、插件开发、响应式设计、暗黑模式支持等。从原子化 CSS 的优势到实际项目中的最佳实践，希望能帮助你更高效地使用 Tailwind。',
@@ -48,16 +48,16 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: '5',
-    title: 'TypeScript 高级类型体操入门',
+    title: '🤸 TypeScript 高级类型体操入门',
     date: '2024-01-20',
     tags: ['#TypeScript', '#前端', '#编程'],
-    summary: 'TypeScript 的类型系统非常强大，掌握高级类型技巧可以让你的代码更加健壮和可维护。本文从泛型、条件类型、映射类型等基础概念出发，逐步深入到模板字面量类型、递归类型等高级用法。通过实际案例，带你领略 TypeScript 类型体操的魅力。',
+    summary: 'TypeScript 的类型系统非常强大，掌握高级类型技巧可以让你的代码更加健壮和可维护。本文从泛型、条件类型、映射类型等基础概念出发，逐步深入到模板字面量类型、递归类型等高级用法。通过实际案例，带你领略 TypeScript 类型体操的魅力. ',
     image: '/images/blog2-vue-component.png',
     slug: 'typescript-advanced-types'
   },
   {
     id: '6',
-    title: '我的 2024 前端学习路线图',
+    title: '🗺️ 我的 2024 前端学习路线图',
     date: '2024-01-28',
     tags: ['#前端', '#学习', '#职业规划'],
     summary: '前端技术更新迭代很快，制定一个清晰的学习路线图非常重要。本文分享了我 2024 年的前端学习计划，包括核心基础巩固、框架深入、工程化实践、性能优化等方向。同时我也会分享一些学习资源和方法，希望能给同样在前端学习路上的你一些参考。',
@@ -80,8 +80,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: '1',
-    name: '交互式数据可视化图表',
-    description: '基于 D3.js 和 Vue 的动态数据可视化组件库，支持多种图表类型和实时数据更新。',
+    name: '📊 交互式数据可视化图表',
+    description: '基于 D3.js 和 Vue 的动态数据可视化组件库，支持多种图表类型 and 实时数据更新。',
     techStack: ['D3.js', 'Vue', 'TypeScript'],
     image: '/images/project1-data-viz.jpg',
     link: '#',
@@ -89,7 +89,7 @@ export const projects: Project[] = [
   },
   {
     id: '2',
-    name: '个人网站色彩主题生成器',
+    name: '🌈 个人网站色彩主题生成器',
     description: '一键生成和谐的色彩搭配方案，支持导出为 CSS Variables 和多种设计工具格式。',
     techStack: ['JavaScript', 'CSS Variables', 'React'],
     image: '/images/project2-color-generator.jpg',
@@ -98,7 +98,7 @@ export const projects: Project[] = [
   },
   {
     id: '3',
-    name: '简约待办事项命令行工具',
+    name: '💻 简约待办事项命令行工具',
     description: '用 Python 开发的轻量级 CLI 工具，支持任务管理、优先级设置和数据同步。',
     techStack: ['Python', 'Click', 'SQLite'],
     image: '/images/project3-cli-tool.png',
@@ -107,7 +107,7 @@ export const projects: Project[] = [
   },
   {
     id: '4',
-    name: 'CSS创意动画合集',
+    name: '🎬 CSS创意动画合集',
     description: '收集和展示各种纯 CSS 实现的创意动画效果，包括加载动画、过渡效果和微交互。',
     techStack: ['HTML/CSS', 'Sass', 'Animation'],
     image: '/images/project4-css-animation.jpg',
@@ -116,7 +116,7 @@ export const projects: Project[] = [
   },
   {
     id: '5',
-    name: 'React 组件库文档站点',
+    name: '📚 React 组件库文档站点',
     description: '为团队内部 React 组件库搭建的文档站点，支持组件演示、Props 说明和代码示例。',
     techStack: ['React', 'Vite', 'MDX'],
     image: '/images/project1-data-viz.jpg',
@@ -125,7 +125,7 @@ export const projects: Project[] = [
   },
   {
     id: '6',
-    name: 'Markdown 笔记编辑器',
+    name: '📝 Markdown 笔记编辑器',
     description: '支持实时预览的 Markdown 编辑器，具有语法高亮、自动保存和导出功能。',
     techStack: ['React', 'TypeScript', 'Marked'],
     image: '/images/project2-color-generator.jpg',

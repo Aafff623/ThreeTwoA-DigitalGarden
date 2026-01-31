@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ThemeProvider } from 'next-themes';
 import { Navbar } from '@/components/Navbar';
-import { ParticleBackground } from '@/components/ParticleBackground';
+import { GardenBackground } from '@/components/ParticleBackground';
 import { HomeSection } from '@/sections/HomeSection';
 import { BlogSection } from '@/sections/BlogSection';
 import { ProjectsSection } from '@/sections/ProjectsSection';
@@ -57,48 +56,48 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
+    <>
       {/* Loading Screen */}
       <AnimatePresence>
         {isLoading && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[100] bg-[var(--bg-primary)] flex items-center justify-center"
+            transition={{ duration: 0.8 }}
+            className="fixed inset-0 z-[100] bg-[var(--bg-primary)] flex items-center justify-center noise-bg"
           >
             <div className="text-center">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-12"
               >
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#00d4aa] to-[#4facfe] flex items-center justify-center mx-auto">
-                  <span className="text-3xl font-bold text-white">3</span>
+                <div className="w-24 h-24 rounded-full bg-[var(--accent-primary)] flex items-center justify-center mx-auto shadow-2xl">
+                  <span className="text-4xl font-serif italic text-[var(--bg-primary)]">3</span>
                 </div>
               </motion.div>
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: 200 }}
-                transition={{ duration: 1, ease: 'easeInOut' }}
-                className="h-1 bg-gradient-to-r from-[#00d4aa] to-[#4facfe] rounded-full mx-auto"
+                animate={{ width: 160 }}
+                transition={{ duration: 1.2, ease: 'easeInOut' }}
+                className="h-[1px] bg-[var(--accent-primary)] rounded-full mx-auto opacity-40"
               />
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-4 text-[#8a8a9a] text-sm"
+                transition={{ delay: 0.6 }}
+                className="mt-6 text-[var(--text-muted)] text-[10px] font-bold uppercase tracking-[0.3em]"
               >
-                正在初始化数字花园...
+                Cultivating thoughts...
               </motion.p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      
-      {/* Particle Background */}
-      <ParticleBackground />
+
+      {/* Garden Background */}
+      <GardenBackground />
 
       {/* Main Content */}
       <div className="relative min-h-screen">
@@ -121,7 +120,7 @@ function App() {
         {/* Footer */}
         <Footer />
       </div>
-    </ThemeProvider>
+    </>
   );
 }
 

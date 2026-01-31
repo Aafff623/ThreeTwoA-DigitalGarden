@@ -106,10 +106,10 @@ export function ChatNotesSection() {
             ChatNotes
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
-            思维显影板
+            📽️ 思维显影板
           </h2>
           <p className="text-[var(--text-secondary)] max-w-xl mx-auto">
-            与自己的对话，让思考像照片一样逐渐显影
+            与自己的对话，让思考像照片一样逐渐显影 🎞️
           </p>
         </motion.div>
 

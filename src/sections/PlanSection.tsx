@@ -34,29 +34,29 @@ const initialTasks: Task[] = planItems.map(item => ({
 }));
 
 const priorityColors = {
-  'P0': '#ff6b6b',
-  'P1': '#f0c674',
-  'P2': '#00d4aa',
+  'P0': '#bc6c25', // Terracotta
+  'P1': '#dda15e', // Wheat
+  'P2': '#a3b18a', // Sage
 };
 
 const statusConfig = {
-  'in-progress': { 
-    label: '进行中', 
-    icon: Circle, 
-    color: '#00d4aa',
-    bgColor: '#00d4aa15'
+  'in-progress': {
+    label: '生长中',
+    icon: Circle,
+    color: '#a3b18a',
+    bgColor: 'rgba(163, 177, 138, 0.1)'
   },
-  'planned': { 
-    label: '计划中', 
-    icon: Clock, 
-    color: '#4facfe',
-    bgColor: '#4facfe15'
+  'planned': {
+    label: '播种计划',
+    icon: Clock,
+    color: '#dda15e',
+    bgColor: 'rgba(221, 161, 94, 0.1)'
   },
-  'completed': { 
-    label: '已完成', 
-    icon: CheckCircle2, 
-    color: '#22c55e',
-    bgColor: '#22c55e15'
+  'completed': {
+    label: '已收获',
+    icon: CheckCircle2,
+    color: '#606c38',
+    bgColor: 'rgba(96, 108, 56, 0.1)'
   },
 };
 
@@ -80,8 +80,8 @@ export function PlanSection() {
   }, [tasks]);
 
   const handleDragEnd = (taskId: string, newStatus: 'in-progress' | 'planned' | 'completed') => {
-    setTasks(prev => prev.map(task => 
-      task.id === taskId 
+    setTasks(prev => prev.map(task =>
+      task.id === taskId
         ? { ...task, status: newStatus, progress: newStatus === 'completed' ? 100 : newStatus === 'in-progress' ? 50 : 0 }
         : task
     ));
@@ -97,16 +97,16 @@ export function PlanSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12"
+          className="mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-primary)] opacity-[0.15] text-[var(--accent-primary)] text-sm font-medium mb-4">
-            Plan
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-primary)] bg-opacity-10 text-[var(--accent-primary)] text-xs font-bold uppercase tracking-[0.2em] mb-6">
+            Growth Roadmap
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
-            任务实验室
+          <h2 className="text-5xl sm:text-6xl font-serif text-[var(--text-primary)] mb-6">
+            🗺️ 成长蓝图
           </h2>
-          <p className="text-[var(--text-secondary)] max-w-xl">
-            追踪进度，管理时间，让每一刻都产生价值
+          <p className="text-[var(--text-secondary)] max-w-xl font-light tracking-wide">
+            追踪想法的萌发与成熟，管理时间的流向，见证每一颗创意的种子破土而出 🌱
           </p>
         </motion.div>
 
@@ -116,55 +116,55 @@ export function PlanSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
         >
-          <div className="glass rounded-xl p-4">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="glass rounded-3xl p-6 border-none">
+            <div className="flex items-center gap-2 mb-4">
               <Target className="w-4 h-4 text-[var(--accent-primary)]" />
-              <span className="text-xs text-[var(--text-secondary)]">总进度</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">Harvest Progress</span>
             </div>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{stats.progressPercent}%</div>
-            <div className="mt-2 h-1.5 bg-[var(--border-color)] rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-[#00d4aa] to-[#4facfe] rounded-full"
+            <div className="text-3xl font-serif text-[var(--text-primary)]">{stats.progressPercent}%</div>
+            <div className="mt-4 h-1 bg-white/5 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-[var(--accent-primary)] rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${stats.progressPercent}%` }}
                 transition={{ duration: 1, delay: 0.5 }}
               />
             </div>
           </div>
-          <div className="glass rounded-xl p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Zap className="w-4 h-4 text-[#f0c674]" />
-              <span className="text-xs text-[var(--text-secondary)]">进行中</span>
+          <div className="glass rounded-3xl p-6 border-none">
+            <div className="flex items-center gap-2 mb-4">
+              <Zap className="w-4 h-4 text-[var(--accent-secondary)]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">Growing Now</span>
             </div>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{stats.inProgress}</div>
-            <div className="text-xs text-[var(--text-muted)] mt-1">个活跃任务</div>
+            <div className="text-3xl font-serif text-[var(--text-primary)]">{stats.inProgress}</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mt-2 opacity-40">Active Seeds</div>
           </div>
-          <div className="glass rounded-xl p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircle2 className="w-4 h-4 text-[#22c55e]" />
-              <span className="text-xs text-[var(--text-secondary)]">已完成</span>
+          <div className="glass rounded-3xl p-6 border-none">
+            <div className="flex items-center gap-2 mb-4">
+              <CheckCircle2 className="w-4 h-4 text-[#606c38]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">Harvested</span>
             </div>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{stats.completed}</div>
-            <div className="text-xs text-[var(--text-muted)] mt-1">个任务</div>
+            <div className="text-3xl font-serif text-[var(--text-primary)]">{stats.completed}</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mt-2 opacity-40">Mature Thoughts</div>
           </div>
-          <div className="glass rounded-xl p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Clock className="w-4 h-4 text-[#4facfe]" />
-              <span className="text-xs text-[var(--text-secondary)]">时间投入</span>
+          <div className="glass rounded-3xl p-6 border-none">
+            <div className="flex items-center gap-2 mb-4">
+              <Clock className="w-4 h-4 text-[var(--accent-tertiary)]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">Time Cultivated</span>
             </div>
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{stats.totalTime}h</div>
-            <div className="text-xs text-[var(--text-muted)] mt-1">/ {stats.estimatedTime}h 预估</div>
+            <div className="text-3xl font-serif text-[var(--text-primary)]">{stats.totalTime}h</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mt-2 opacity-40">/ {stats.estimatedTime}h Est.</div>
           </div>
         </motion.div>
 
         {/* Kanban Board */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {(Object.keys(columns) as Array<keyof typeof columns>).map((status, columnIndex) => {
             const config = statusConfig[status];
             const columnTasks = columns[status];
-            
+
             return (
               <motion.div
                 key={status}
@@ -172,7 +172,7 @@ export function PlanSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 + columnIndex * 0.1 }}
-                className="glass rounded-2xl p-5"
+                className="bg-[var(--bg-secondary)]/50 rounded-[2rem] p-6 border border-white/5"
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                   e.preventDefault();
@@ -181,50 +181,50 @@ export function PlanSection() {
                 }}
               >
                 {/* Column Header */}
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-3">
-                    <div 
-                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+                <div className="flex items-center justify-between mb-8 px-2">
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: config.bgColor }}
                     >
                       <config.icon className="w-5 h-5" style={{ color: config.color }} />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[var(--text-primary)]">{config.label}</h3>
-                      <span className="text-xs text-[var(--text-muted)]">{columnTasks.length} 个任务</span>
+                      <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--text-primary)]">{config.label}</h3>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] opacity-40">{columnTasks.length} Seeds</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Task Cards */}
-                <div className="space-y-3 min-h-[200px]">
+                <div className="space-y-4 min-h-[300px]">
                   <AnimatePresence mode="popLayout">
                     {columnTasks.map((task, index) => (
                       <motion.div
                         key={task.id}
                         layout
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.4, delay: index * 0.05 }}
                         draggable
-                        onDragStartCapture={(e) => {
-                          setDraggedTask(task.id);
+                        onDragStart={(e) => {
                           e.dataTransfer.setData('taskId', task.id);
+                          setDraggedTask(task.id);
                         }}
-                        className={`group relative bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-5 cursor-move hover:border-[var(--accent-primary)] transition-all duration-300 shadow-sm hover:shadow-md ${
-                          draggedTask === task.id ? 'opacity-50 scale-105 shadow-xl shadow-[var(--glow-primary)] border-[var(--accent-primary)]' : ''
+                        className={`group relative bg-[var(--bg-card)] rounded-2xl p-6 cursor-grab active:cursor-grabbing border border-white/5 hover:border-[var(--accent-primary)]/20 transition-all duration-500 hover-lift ${
+                          draggedTask === task.id ? 'opacity-50 scale-105 shadow-2xl z-20' : ''
                         }`}
                       >
                         {/* Drag Handle */}
-                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                           <GripVertical className="w-4 h-4 text-[var(--text-muted)]" />
                         </div>
 
                         {/* Priority Badge */}
-                        <div className="flex items-center gap-2 mb-3">
+                        <div className="flex items-center gap-3 mb-4">
                           <span 
-                            className="px-2 py-0.5 rounded text-xs font-mono"
+                            className="px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-widest"
                             style={{ 
                               backgroundColor: `${priorityColors[task.priority]}20`,
                               color: priorityColors[task.priority]
@@ -233,7 +233,7 @@ export function PlanSection() {
                             {task.priority}
                           </span>
                           {task.deadline && (
-                            <span className="flex items-center gap-1 text-xs text-[var(--text-muted)]">
+                            <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
                               <Calendar className="w-3 h-3" />
                               {task.deadline}
                             </span>
@@ -241,22 +241,22 @@ export function PlanSection() {
                         </div>
 
                         {/* Title */}
-                        <h4 className="font-medium text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors">
+                        <h4 className="text-lg font-serif text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-primary)] transition-colors duration-500 leading-tight">
                           {task.title}
                         </h4>
 
                         {/* Description */}
-                        <p className="text-sm text-[var(--text-secondary)] mb-4 line-clamp-2">
+                        <p className="text-xs text-[var(--text-secondary)] mb-6 line-clamp-2 font-light leading-relaxed">
                           {task.description}
                         </p>
 
                         {/* Progress Bar */}
-                        <div className="mb-3">
-                          <div className="flex items-center justify-between text-xs mb-1">
-                            <span className="text-[var(--text-muted)]">进度</span>
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between text-[9px] font-bold uppercase tracking-widest mb-2">
+                            <span className="text-[var(--text-muted)]">Growth</span>
                             <span className="text-[var(--accent-primary)]">{task.progress}%</span>
                           </div>
-                          <div className="h-1.5 bg-[var(--border-color)] rounded-full overflow-hidden">
+                          <div className="h-1 bg-white/5 rounded-full overflow-hidden">
                             <motion.div 
                               className="h-full rounded-full"
                               style={{ backgroundColor: config.color }}
@@ -268,24 +268,13 @@ export function PlanSection() {
                         </div>
 
                         {/* Time Stats */}
-                        <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
-                          <span className="flex items-center gap-1">
+                        <div className="flex items-center justify-between text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
+                          <span className="flex items-center gap-1.5">
                             <Clock className="w-3 h-3" />
-                            {task.timeSpent}h / {task.timeEstimate}h
+                            {task.timeSpent}H / {task.timeEstimate}H
                           </span>
-                          <TrendingUp className="w-3 h-3" />
+                          <TrendingUp className="w-3 h-3 opacity-20" />
                         </div>
-
-                        {/* Glow Effect on Drag */}
-                        {draggedTask === task.id && (
-                          <div 
-                            className="absolute inset-0 rounded-xl opacity-30"
-                            style={{ 
-                              boxShadow: `0 0 30px ${config.color}`,
-                              pointerEvents: 'none'
-                            }}
-                          />
-                        )}
                       </motion.div>
                     ))}
                   </AnimatePresence>
@@ -296,9 +285,9 @@ export function PlanSection() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="mt-3 p-4 rounded-xl border-2 border-dashed border-[#ffffff15] flex items-center justify-center text-[#5a5a6a] text-sm"
+                    className="mt-6 p-8 rounded-2xl border-2 border-dashed border-white/5 flex items-center justify-center text-[var(--text-muted)] text-[10px] font-bold uppercase tracking-widest"
                   >
-                    拖放到此处
+                    Drop to plant
                   </motion.div>
                 )}
               </motion.div>
@@ -312,11 +301,11 @@ export function PlanSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8 }}
-          className="mt-8 text-center"
+          className="mt-12 text-center"
         >
-          <p className="text-sm text-[#5a5a6a] flex items-center justify-center gap-2">
-            <AlertCircle className="w-4 h-4" />
-            拖拽任务卡片可在不同状态间移动
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] flex items-center justify-center gap-3 opacity-60">
+            <AlertCircle className="w-4 h-4 text-[var(--accent-primary)]" />
+            Drag cards to evolve their status
           </p>
         </motion.div>
       </div>

@@ -22,9 +22,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-color)]">
+    <footer className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-[#ffffff08]">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--accent-primary)] opacity-[0.05] to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#00d4aa05] to-transparent pointer-events-none" />
       
       <div className="max-w-6xl mx-auto relative">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
@@ -39,10 +39,10 @@ export function Footer() {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00d4aa] to-[#4facfe] flex items-center justify-center">
                 <Flower2 className="w-5 h-5 text-white" />
               </div>
-              <span className="font-semibold text-lg text-[var(--text-primary)]">ThreeTwoA Digital Garden</span>
+              <span className="font-semibold text-lg text-[#f0f0f5]">ThreeTwoA Digital Garden 🌿</span>
             </div>
-            <p className="text-[var(--text-secondary)] text-sm max-w-sm">
-              一个持续生长的大学生创意与思考空间。种植想法，培育项目，记录成长。
+            <p className="text-[#8a8a9a] text-sm max-w-sm">
+              一个持续生长的大学生创意与思考空间。种植想法，培育项目，记录成长 🚀
             </p>
           </motion.div>
 
@@ -58,7 +58,7 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-[var(--text-secondary)] hover:text-[#00d4aa] transition-colors text-sm"
+                className="text-[#8a8a9a] hover:text-[#00d4aa] transition-colors text-sm"
               >
                 {link.label}
               </a>
@@ -77,17 +77,17 @@ export function Footer() {
               <a
                 key={social.label}
                 href={social.href}
-                className="w-10 h-10 rounded-lg bg-[var(--border-color)] hover:bg-[#00d4aa15] flex items-center justify-center transition-all duration-300 group"
+                className="w-10 h-10 rounded-lg bg-[#ffffff08] hover:bg-[#00d4aa15] flex items-center justify-center transition-all duration-300 group"
                 aria-label={social.label}
               >
-                <social.icon className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[#00d4aa] transition-colors" />
+                <social.icon className="w-5 h-5 text-[#8a8a9a] group-hover:text-[#00d4aa] transition-colors" />
               </a>
             ))}
           </motion.div>
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-[var(--border-color)] my-8" />
+        <div className="h-px bg-[#ffffff08] my-8" />
 
         {/* Copyright */}
         <motion.div
@@ -97,18 +97,18 @@ export function Footer() {
           transition={{ delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm text-[var(--text-muted)] flex items-center gap-1">
+          <p className="text-sm text-[#5a5a6a] flex items-center gap-1">
             © {currentYear} ThreeTwoA Digital Garden. Made with
             <Heart className="w-4 h-4 text-[#ff6b6b] mx-1" />
             and curiosity.
           </p>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-[var(--text-muted)]">一切都在生长中 🌱</span>
+            <span className="text-sm text-[#5a5a6a]">一切都在生长中 🌱</span>
             <button
               onClick={scrollToTop}
-              className="w-8 h-8 rounded-lg bg-[var(--border-color)] hover:bg-[#00d4aa15] flex items-center justify-center transition-all group"
+              className="w-8 h-8 rounded-lg bg-[#ffffff08] hover:bg-[#00d4aa15] flex items-center justify-center transition-all group"
             >
-              <ArrowUp className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[#00d4aa] transition-colors" />
+              <ArrowUp className="w-4 h-4 text-[#8a8a9a] group-hover:text-[#00d4aa] transition-colors" />
             </button>
           </div>
         </motion.div>

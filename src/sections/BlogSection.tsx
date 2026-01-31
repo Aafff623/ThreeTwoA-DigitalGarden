@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Tag, ArrowRight, X, Clock, Eye, BookOpen } from 'lucide-react';
 import { blogPosts } from '@/data';
@@ -124,6 +124,15 @@ export function BlogSection() {
   const [selectedPost, setSelectedPost] = useState<string | null>(null);
   const [readingMode, setReadingMode] = useState(false);
 
+  useEffect(() => {
+    if (readingMode) {
+      document.body.classList.add('reading-mode');
+    } else {
+      document.body.classList.remove('reading-mode');
+    }
+    return () => document.body.classList.remove('reading-mode');
+  }, [readingMode]);
+
   const selectedPostData = selectedPost 
     ? blogPosts.find(p => p.id === selectedPost) 
     : null;
@@ -142,14 +151,14 @@ export function BlogSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-primary)] opacity-[0.15] text-[var(--accent-primary)] text-sm font-medium mb-4">
-            Blog
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-primary)] bg-opacity-10 text-[var(--accent-primary)] text-xs font-bold uppercase tracking-[0.2em] mb-6">
+            Garden Journal
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
-            思想花园
+          <h2 className="text-5xl sm:text-6xl font-serif text-[var(--text-primary)] mb-6">
+            💡 思想花园
           </h2>
-          <p className="text-[var(--text-secondary)] max-w-xl mx-auto">
-            记录学习轨迹，分享技术心得，沉淀思考片段
+          <p className="text-[var(--text-secondary)] max-w-xl mx-auto font-light tracking-wide">
+            记录学习轨迹，分享技术心得，沉淀在数字花园里的每一次思考与生长 📖
           </p>
         </motion.div>
 
@@ -167,28 +176,29 @@ export function BlogSection() {
                 ease: [0.16, 1, 0.3, 1] 
               }}
               onClick={() => setSelectedPost(post.id)}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer border border-[var(--border-color)] shadow-lg shadow-black/10 dark:shadow-black/40"
+              className="group relative rounded-2xl overflow-hidden cursor-pointer"
               style={{ minHeight: '400px' }}
             >
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--glow-primary)] to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
               {/* Background Image */}
               <div className="absolute inset-0">
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
-                {/* Dynamic Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/80 dark:opacity-[0.9] opacity-[0.5] to-transparent dark:opacity-[0.4] opacity-[0.1]" />
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/80 to-transparent" />
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex flex-col justify-end p-6">
+              <div className="relative h-full flex flex-col justify-end p-8">
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 rounded-full bg-[var(--bg-glass)] border border-[var(--border-color)] backdrop-blur-sm text-[10px] font-medium text-[var(--text-secondary)] uppercase tracking-wider"
+                      className="px-3 py-1 rounded-full bg-white/5 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-[var(--text-secondary)]"
                     >
                       {tag}
                     </span>
@@ -196,31 +206,31 @@ export function BlogSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-3 line-clamp-2 group-hover:text-[var(--accent-primary)] transition-colors duration-300">
+                <h3 className="text-2xl font-serif text-[var(--text-primary)] mb-4 line-clamp-2 group-hover:text-[var(--accent-primary)] transition-colors duration-500">
                   {post.title}
                 </h3>
 
                 {/* Summary */}
-                <p className="text-sm text-[var(--text-secondary)] mb-6 line-clamp-2 leading-relaxed opacity-90">
+                <p className="text-sm text-[var(--text-secondary)] mb-6 line-clamp-2 font-light leading-relaxed">
                   {post.summary}
                 </p>
 
                 {/* Meta */}
-                <div className="flex items-center justify-between pt-4 border-t border-[var(--border-color)]/10">
-                  <span className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-medium">
-                    <Calendar className="w-3.5 h-3.5" />
+                <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                  <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
+                    <Calendar className="w-3 h-3" />
                     {post.date}
                   </span>
-                  <span className="flex items-center gap-1 text-xs font-bold text-[var(--accent-primary)] group-hover:gap-2 transition-all">
-                    READ MORE
-                    <ArrowRight className="w-3.5 h-3.5" />
+                  <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-[var(--accent-primary)] group-hover:gap-2 transition-all">
+                    Read More
+                    <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
               </div>
 
               {/* Hover Border Effect */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_rgba(var(--accent-primary-rgb),0.3)]" />
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_rgba(163,177,138,0.2)]" />
               </div>
             </motion.article>
           ))}
@@ -237,7 +247,7 @@ export function BlogSection() {
             >
               {/* Backdrop */}
               <div 
-                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                className="absolute inset-0 bg-black/90 backdrop-blur-sm"
                 onClick={() => setSelectedPost(null)}
               />
               
@@ -247,12 +257,12 @@ export function BlogSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative w-full ${readingMode ? 'h-full overflow-auto' : 'max-w-4xl max-h-[90vh] overflow-auto'} bg-[var(--bg-primary)]`}
+                className={`relative w-full ${readingMode ? 'h-full overflow-auto' : 'max-w-4xl max-h-[90vh] overflow-auto rounded-3xl'} bg-[var(--bg-primary)]`}
               >
                 {/* Reading Progress Bar */}
-                <div className="sticky top-0 left-0 right-0 h-1 bg-[var(--border-color)] z-20">
+                <div className="sticky top-0 left-0 right-0 h-1 bg-white/5 z-20">
                   <motion.div 
-                    className="h-full bg-gradient-to-r from-[#00d4aa] to-[#4facfe]"
+                    className="h-full bg-[var(--accent-primary)]"
                     initial={{ width: '0%' }}
                     animate={{ width: '100%' }}
                     transition={{ duration: 0.3 }}
@@ -260,68 +270,64 @@ export function BlogSection() {
                 </div>
 
                 {/* Header */}
-                <div className="relative h-72 overflow-hidden">
+                <div className="relative h-96 overflow-hidden">
                   <img
                     src={selectedPostData.image}
                     alt={selectedPostData.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)] opacity-[0.6] to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/40 to-transparent" />
                   
                   {/* Controls */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                  <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedPost(null)}
-                      className="w-10 h-10 rounded-full bg-[var(--bg-glass)] backdrop-blur-sm flex items-center justify-center hover:bg-[var(--bg-tertiary)] transition-colors"
+                      className="w-12 h-12 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center hover:bg-black/40 transition-all border border-white/10"
                     >
-                      <X className="w-5 h-5 text-[var(--text-primary)]" />
+                      <X className="w-6 h-6 text-white" />
                     </button>
                     <button
                       onClick={() => setReadingMode(!readingMode)}
-                      className="px-4 py-2 rounded-full bg-[var(--bg-glass)] backdrop-blur-sm text-sm text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors flex items-center gap-2"
+                      className="px-6 py-2.5 rounded-full bg-black/20 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-white hover:bg-black/40 transition-all border border-white/10 flex items-center gap-2"
                     >
                       <BookOpen className="w-4 h-4" />
-                      {readingMode ? '退出阅读模式' : '阅读模式'}
+                      {readingMode ? 'Exit Reading' : 'Reading Mode'}
                     </button>
                   </div>
 
                   {/* Title Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="absolute bottom-0 left-0 right-0 p-12">
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {selectedPostData.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 rounded-full bg-[var(--accent-primary)] opacity-[0.2] text-[var(--accent-primary)] text-xs"
+                          className="px-3 py-1 rounded-full bg-[var(--accent-primary)]/20 text-[10px] font-bold uppercase tracking-widest text-[var(--accent-primary)]"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">
+                    <h1 className="text-4xl sm:text-5xl font-serif text-[var(--text-primary)] mb-6 leading-tight">
                       {selectedPostData.title}
                     </h1>
-                    <div className="flex items-center gap-6 text-sm text-[var(--text-secondary)]">
-                      <span className="flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4" />
+                    <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                      <span className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-[var(--accent-primary)]" />
                         {selectedPostData.date}
                       </span>
-                      <span className="flex items-center gap-1.5">
-                        <Clock className="w-4 h-4" />
-                        5 分钟阅读
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <Eye className="w-4 h-4" />
-                        128 阅读
+                      <span className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-[var(--accent-primary)]" />
+                        5 MIN READ
                       </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Article Body */}
-                <div className="p-8 sm:p-12">
+                <div className="p-12 sm:p-20">
                   {/* Quote Block */}
-                  <blockquote className="border-l-4 border-[var(--accent-primary)] pl-6 py-2 mb-8">
-                    <p className="text-xl italic text-[var(--text-secondary)]">
+                  <blockquote className="border-l-2 border-[var(--accent-primary)] pl-8 py-2 mb-12">
+                    <p className="text-2xl font-serif italic text-[var(--text-secondary)] leading-relaxed">
                       "{selectedContent.quote}"
                     </p>
                   </blockquote>
@@ -329,34 +335,26 @@ export function BlogSection() {
                   {/* Content with Drop Cap */}
                   <div className="prose prose-invert prose-lg max-w-none">
                     <div 
-                      className="drop-cap text-[var(--text-secondary)] leading-relaxed whitespace-pre-line"
+                      className="drop-cap text-[var(--text-secondary)] leading-[2] whitespace-pre-line text-justify tracking-wide font-light"
+                      style={{ 
+                        fontSize: '1.125rem',
+                        fontFamily: "var(--font-sans)"
+                      }}
                       dangerouslySetInnerHTML={{ 
                         __html: selectedContent.content
-                          .replace(/## (.*)/g, '<h2 class="text-2xl font-bold text-[var(--text-primary)] mt-10 mb-4">$1</h2>')
-                          .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--text-primary)]">$1</strong>')
-                          .replace(/`([^`]+)`/g, '<code class="px-2 py-1 rounded bg-[var(--bg-tertiary)] text-[var(--accent-primary)] text-sm">$1</code>')
+                          .replace(/## (.*)/g, '<h2 class="text-3xl font-serif text-[var(--text-primary)] mt-16 mb-8 pb-4 border-b border-white/5">$1</h2>')
+                          .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--text-primary)] font-bold">$1</strong>')
+                          .replace(/`([^`]+)`/g, '<code class="px-2 py-1 rounded bg-[var(--bg-secondary)] text-[var(--accent-primary)] text-sm font-mono">$1</code>')
                       }}
                     />
                   </div>
 
-                  {/* Full Bleed Image Placeholder */}
-                  <div className="my-12 -mx-8 sm:-mx-12">
-                    <div className="aspect-[21/9] bg-gradient-to-r from-[var(--accent-primary)] opacity-[0.15] to-[var(--accent-secondary)] opacity-[0.15] flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-16 h-16 rounded-2xl bg-[var(--border-color)] flex items-center justify-center mx-auto mb-4">
-                          <Tag className="w-8 h-8 text-[var(--text-secondary)]" />
-                        </div>
-                        <p className="text-[var(--text-muted)]">文章配图区域</p>
-                      </div>
-                    </div>
-                  </div>
-
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mt-12 pt-8 border-t border-[var(--border-color)]">
+                  <div className="flex flex-wrap gap-3 mt-20 pt-10 border-t border-white/5">
                     {selectedPostData.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-4 py-2 rounded-lg bg-[var(--border-color)] text-sm text-[var(--text-secondary)] hover:bg-[var(--accent-primary)] opacity-[0.15] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
+                        className="px-5 py-2 rounded-full bg-[var(--bg-secondary)] text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
                       >
                         {tag}
                       </span>

@@ -78,19 +78,19 @@ export function ProjectsSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-secondary)] opacity-[0.15] text-[var(--accent-secondary)] text-sm font-medium mb-4">
-            Projects
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-primary)] bg-opacity-10 text-[var(--accent-primary)] text-xs font-bold uppercase tracking-[0.2em] mb-6">
+            Creative Portfolio
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
-            项目陈列馆
+          <h2 className="text-5xl sm:text-6xl font-serif text-[var(--text-primary)] mb-6">
+            🖼️ 项目陈列馆
           </h2>
-          <p className="text-[var(--text-secondary)] max-w-xl">
-            每一个项目都是一次探索，从概念到实现，记录创意的生长轨迹
+          <p className="text-[var(--text-secondary)] max-w-xl font-light tracking-wide">
+            每一个项目都是一次探索，从概念到实现，记录创意在数字土壤里的生长轨迹 🌱
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Projects Grid - 调整为每行 3-4 个 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -103,35 +103,30 @@ export function ProjectsSection() {
                 ease: [0.16, 1, 0.3, 1] 
               }}
               onClick={() => setSelectedProject(project.id)}
-              className="group relative glass rounded-2xl overflow-hidden cursor-pointer hover:border-[rgba(var(--accent-primary-rgb),0.3)] transition-all duration-500"
+              className="group relative glass rounded-3xl overflow-hidden cursor-pointer border-none hover-lift"
             >
               {/* Hero Image */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
-                {/* Dynamic Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/40 dark:opacity-[0.6] opacity-[0.2] to-transparent" />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/40 to-transparent" />
                 
-                {/* Hover Glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--accent-primary)]/20 to-transparent" />
-                </div>
-
                 {/* Project Number */}
-                <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-[var(--bg-glass)] border border-[var(--border-color)] backdrop-blur-md flex items-center justify-center shadow-lg">
-                  <span className="text-[var(--accent-primary)] font-bold text-sm">0{project.id}</span>
+                <div className="absolute top-6 left-6 w-10 h-10 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10">
+                  <span className="text-[var(--accent-primary)] font-serif italic text-sm">{project.id}</span>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 relative bg-gradient-to-b from-transparent to-[var(--bg-card)]/30">
-                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors duration-300">
+              <div className="p-8">
+                <h3 className="text-2xl font-serif text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-primary)] transition-colors duration-500">
                   {project.name}
                 </h3>
-                <p className="text-[var(--text-secondary)] text-sm mb-6 line-clamp-2 leading-relaxed opacity-90">
+                <p className="text-[var(--text-secondary)] text-sm mb-6 line-clamp-2 font-light leading-relaxed">
                   {project.description}
                 </p>
 
@@ -140,7 +135,7 @@ export function ProjectsSection() {
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-color)]/50 text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-tight"
+                      className="px-3 py-1 rounded-full bg-white/5 text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]"
                     >
                       {tech}
                     </span>
@@ -148,9 +143,9 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Hover Glow Effect */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_rgba(var(--accent-primary-rgb),0.3),0_0_30px_rgba(var(--accent-primary-rgb),0.1)]" />
+              {/* Border Glow Effect */}
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_0_1px_rgba(163,177,138,0.2)]" />
               </div>
             </motion.div>
           ))}
@@ -182,48 +177,54 @@ export function ProjectsSection() {
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[var(--bg-glass)] border border-[var(--border-color)] hover:bg-[var(--bg-tertiary)] flex items-center justify-center transition-colors"
+                  className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[#ffffff08] hover:bg-[#ffffff15] flex items-center justify-center transition-colors"
                 >
-                  <X className="w-5 h-5 text-[var(--text-secondary)]" />
+                  <X className="w-5 h-5 text-[#8a8a9a]" />
                 </button>
 
                 {/* Hero Section */}
-                <div className="relative h-80 overflow-hidden">
+                <div className="relative h-96 overflow-hidden">
                   <img
                     src={selectedProjectData.image}
                     alt={selectedProjectData.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)] opacity-[0.8] to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <h2 className="text-4xl font-bold text-[var(--text-primary)] mb-2">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/60 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-12">
+                    <h2 className="text-4xl sm:text-5xl font-serif text-[var(--text-primary)] mb-4">
                       {selectedProjectData.name}
                     </h2>
-                    <p className="text-[var(--text-secondary)]">{selectedProjectData.description}</p>
+                    <p className="text-[var(--text-secondary)] font-light tracking-wide max-w-2xl">{selectedProjectData.description}</p>
                   </div>
                 </div>
 
-                <div className="p-8">
+                <div className="p-12">
                   {/* Demo Section */}
-                  <div className="mb-12">
-                    <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
-                      <Monitor className="w-5 h-5 text-[var(--accent-primary)]" />
-                      实时演示
+                  <div className="mb-16">
+                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-6 flex items-center gap-3">
+                      <div className="w-1 h-1 rounded-full bg-[var(--accent-primary)]" />
+                      Live Demonstration
                     </h3>
-                    <div className="relative rounded-2xl overflow-hidden border border-[var(--border-color)]">
-                      {/* Device Frame */}
-                      <div className="bg-[var(--bg-tertiary)] p-4">
-                        <div className="flex items-center gap-2 mb-4">
-                          <div className="w-3 h-3 rounded-full bg-[#ff6b6b]" />
-                          <div className="w-3 h-3 rounded-full bg-[#f0c674]" />
-                          <div className="w-3 h-3 rounded-full bg-[#00d4aa]" />
-                          <div className="flex-1 h-6 rounded-lg bg-[var(--border-color)] mx-4" />
+                    <div className="relative rounded-[2.5rem] overflow-hidden border border-white/5 bg-[var(--bg-secondary)] p-2 shadow-2xl">
+                      {/* Device Frame Decoration */}
+                      <div className="bg-[var(--bg-primary)] rounded-[2rem] overflow-hidden">
+                        <div className="flex items-center justify-between px-6 py-4 bg-[var(--bg-card)] border-b border-white/5">
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-white/5" />
+                            <div className="w-3 h-3 rounded-full bg-white/5" />
+                            <div className="w-3 h-3 rounded-full bg-white/5" />
+                          </div>
+                          <div className="px-4 py-1 rounded-full bg-white/5 text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] flex items-center gap-2">
+                            <span className="w-1 h-1 rounded-full bg-[var(--accent-primary)]" />
+                            Interactive Module
+                          </div>
+                          <div className="w-12 h-1 bg-white/5 rounded-full" />
                         </div>
-                        <div className="aspect-video bg-gradient-to-br from-[var(--accent-primary)] opacity-[0.2] to-[var(--accent-secondary)] opacity-[0.2] rounded-lg flex items-center justify-center">
-                          <div className="text-center">
-                            <Code2 className="w-16 h-16 text-[var(--accent-primary)] mx-auto mb-4 opacity-50" />
-                            <p className="text-[var(--text-secondary)]">Demo 加载中...</p>
-                            <p className="text-[var(--text-muted)] text-sm mt-2">实际项目中嵌入交互式演示</p>
+                        <div className="aspect-video bg-[var(--bg-primary)] relative flex items-center justify-center overflow-hidden group/demo">
+                          <div className="text-center relative z-20">
+                            <Code2 className="w-16 h-16 text-[var(--accent-primary)] mx-auto mb-6 opacity-20 group-hover/demo:opacity-40 transition-opacity duration-700" />
+                            <p className="text-[var(--text-muted)] font-serif italic text-xl tracking-wide">Growing the interface...</p>
+                            <p className="text-[var(--text-muted)] text-[10px] font-bold uppercase tracking-widest mt-4 opacity-40">Ready for Interaction</p>
                           </div>
                         </div>
                       </div>
@@ -231,61 +232,61 @@ export function ProjectsSection() {
                   </div>
 
                   {/* Detail Cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                    <div className="glass rounded-xl p-6 hover:border-[var(--accent-primary)] transition-colors">
-                      <div className="w-12 h-12 rounded-xl bg-[var(--accent-primary)]/15 flex items-center justify-center mb-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-white/5 hover-lift">
+                      <div className="w-12 h-12 rounded-2xl bg-[var(--bg-primary)] flex items-center justify-center mb-6">
                         <Palette className="w-6 h-6 text-[var(--accent-primary)]" />
                       </div>
-                      <h4 className="font-semibold text-[var(--text-primary)] mb-2">设计哲学</h4>
-                      <p className="text-sm text-[var(--text-secondary)]">{selectedDetails.philosophy}</p>
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-[var(--text-primary)] mb-4">设计哲学</h4>
+                      <p className="text-sm text-[var(--text-secondary)] font-light leading-relaxed">{selectedDetails.philosophy}</p>
                     </div>
-                    <div className="glass rounded-xl p-6 hover:border-[var(--accent-secondary)] transition-colors">
-                      <div className="w-12 h-12 rounded-xl bg-[var(--accent-secondary)]/15 flex items-center justify-center mb-4">
+                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-white/5 hover-lift">
+                      <div className="w-12 h-12 rounded-2xl bg-[var(--bg-primary)] flex items-center justify-center mb-6">
                         <Code2 className="w-6 h-6 text-[var(--accent-secondary)]" />
                       </div>
-                      <h4 className="font-semibold text-[var(--text-primary)] mb-2">技术栈选型</h4>
-                      <p className="text-sm text-[var(--text-secondary)]">{selectedDetails.techStack}</p>
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-[var(--text-primary)] mb-4">技术栈选型</h4>
+                      <p className="text-sm text-[var(--text-secondary)] font-light leading-relaxed">{selectedDetails.techStack}</p>
                     </div>
-                    <div className="glass rounded-xl p-6 hover:border-[var(--accent-tertiary)] transition-colors">
-                      <div className="w-12 h-12 rounded-xl bg-[var(--accent-tertiary)]/15 flex items-center justify-center mb-4">
+                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-white/5 hover-lift">
+                      <div className="w-12 h-12 rounded-2xl bg-[var(--bg-primary)] flex items-center justify-center mb-6">
                         <Puzzle className="w-6 h-6 text-[var(--accent-tertiary)]" />
                       </div>
-                      <h4 className="font-semibold text-[var(--text-primary)] mb-2">挑战与解决</h4>
-                      <p className="text-sm text-[var(--text-secondary)]">{selectedDetails.challenges}</p>
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-[var(--text-primary)] mb-4">挑战与解决</h4>
+                      <p className="text-sm text-[var(--text-secondary)] font-light leading-relaxed">{selectedDetails.challenges}</p>
                     </div>
                   </div>
 
                   {/* Gallery Grid */}
                   <div>
-                    <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
-                      <Layers className="w-5 h-5 text-[var(--accent-primary)]" />
-                      细节画廊
+                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-8 flex items-center gap-3">
+                      <div className="w-1 h-1 rounded-full bg-[var(--accent-primary)]" />
+                      Architecture & Details
                     </h3>
-                    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                    <div className="grid grid-cols-3 gap-4">
                       {galleryItems.map((item, idx) => (
                         <motion.div
                           key={item.type}
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: idx * 0.05 }}
-                          className="group aspect-square glass rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-[var(--accent-primary)] transition-all hover:scale-105"
+                          className="group aspect-square bg-[var(--bg-secondary)] rounded-2xl flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-[var(--bg-tertiary)] transition-all duration-500 hover-lift overflow-hidden relative border border-white/5"
                         >
-                          <item.icon className="w-6 h-6 text-[var(--text-secondary)] group-hover:text-[var(--accent-primary)] transition-colors" />
-                          <span className="text-xs text-[var(--text-muted)] group-hover:text-[var(--text-secondary)] transition-colors">{item.label}</span>
+                          <item.icon className="w-6 h-6 text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] transition-colors duration-500 relative z-10" />
+                          <span className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors duration-500 relative z-10 font-bold">{item.label}</span>
                         </motion.div>
                       ))}
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4 mt-8">
-                    <button className="flex-1 py-3 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#4facfe] text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                  <div className="flex gap-6 mt-16">
+                    <button className="flex-1 py-4 rounded-full bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
                       <ExternalLink className="w-4 h-4" />
-                      查看演示
+                      Live Demo
                     </button>
-                    <button className="flex-1 py-3 rounded-xl bg-[var(--border-color)] text-[var(--text-primary)] font-medium flex items-center justify-center gap-2 hover:bg-[var(--bg-tertiary)] transition-colors border border-[var(--border-color)]">
+                    <button className="flex-1 py-4 rounded-full bg-transparent text-[var(--text-primary)] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[var(--bg-secondary)] transition-all border border-white/10">
                       <Github className="w-4 h-4" />
-                      查看源码
+                      Source Code
                     </button>
                   </div>
                 </div>

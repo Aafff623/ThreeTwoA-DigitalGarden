@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Flower2, Sun, Moon } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { Menu, X, Leaf } from 'lucide-react';
 
 interface NavbarProps {
   currentSection: string;
@@ -18,14 +17,8 @@ const navItems = [
 ];
 
 export function Navbar({ currentSection, onSectionChange }: NavbarProps) {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // When mounted on client, now we can show the UI
-  useEffect(() => setMounted(true), []);
-
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const navRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -63,41 +56,45 @@ export function Navbar({ currentSection, onSectionChange }: NavbarProps) {
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'py-3' : 'py-5'
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+          isScrolled ? 'py-4' : 'py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className={`flex items-center justify-between transition-all duration-500 ${
+            className={`flex items-center justify-between transition-all duration-700 ${
               isScrolled
-                ? 'glass rounded-2xl px-6 py-3'
-                : 'bg-transparent px-2'
+                ? 'glass rounded-full px-8 py-3'
+                : 'bg-transparent px-4'
             }`}
           >
             {/* Logo */}
-            <button 
-              onClick={() => onSectionChange('home')}
+            <button
+              onClick={() => handleNavClick('home')}
               className="flex items-center gap-3 group"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00d4aa] to-[#4facfe] flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(0,212,170,0.3)] transition-all">
-                <Flower2 className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-full bg-[var(--accent-primary)] flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+                <Leaf className="w-5 h-5 text-[var(--bg-primary)]" />
               </div>
-              <span className="font-bold text-xl tracking-tight text-[var(--text-primary)]">ThreeTwoA</span>
+              <span className={`font-serif text-xl hidden sm:block transition-colors ${
+                isScrolled ? 'text-[var(--text-primary)]' : 'text-[var(--text-primary)]'
+              }`}>
+                ThreeTwoA
+              </span>
             </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1 relative">
+            <div className="hidden md:flex items-center gap-2 relative">
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
                   ref={(el) => { navRefs.current[index] = el; }}
                   onClick={() => handleNavClick(item.id)}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                  className={`relative px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-500 ${
                     currentSection === item.id
                       ? 'text-[var(--accent-primary)]'
-                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                      : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   {item.label}
@@ -106,25 +103,18 @@ export function Navbar({ currentSection, onSectionChange }: NavbarProps) {
               
               {/* Flowing Indicator */}
               <motion.div
-                className="absolute bottom-0 h-0.5 bg-gradient-to-r from-[#00d4aa] to-[#4facfe] rounded-full"
+                className="absolute bottom-0 h-0.5 bg-[var(--accent-primary)] rounded-full"
                 animate={{
-                  left: indicatorStyle.left,
-                  width: indicatorStyle.width,
+                  left: indicatorStyle.left + 16,
+                  width: indicatorStyle.width - 32,
                 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               />
             </div>
 
-            {/* CTA Button & Theme Toggle */}
-            <div className="hidden md:flex items-center gap-3">
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2.5 rounded-xl bg-[var(--border-color)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-color)] hover:border-[var(--accent-primary)]/30 transition-all duration-300"
-                aria-label="Toggle Theme"
-              >
-                {mounted && (theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />)}
-              </button>
-              <button className="px-5 py-2 rounded-lg bg-[var(--border-color)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-sm font-medium border border-[var(--border-color)] hover:border-[var(--accent-primary)]/30 transition-all duration-300">
+            {/* CTA Button */}
+            <div className="hidden md:block">
+              <button className="px-6 py-2 rounded-full bg-transparent hover:bg-[var(--accent-primary)] text-[var(--text-primary)] hover:text-[var(--bg-primary)] text-xs font-bold uppercase tracking-widest border border-[var(--border-color)] hover:border-[var(--accent-primary)] transition-all duration-500">
                 订阅
               </button>
             </div>
@@ -132,12 +122,12 @@ export function Navbar({ currentSection, onSectionChange }: NavbarProps) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-[#ffffff08] transition-colors"
+              className="md:hidden p-2 rounded-full hover:bg-[var(--bg-secondary)] transition-colors"
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-[#f0f0f5]" />
+                <X className="w-5 h-5 text-[var(--text-primary)]" />
               ) : (
-                <Menu className="w-5 h-5 text-[#f0f0f5]" />
+                <Menu className="w-5 h-5 text-[var(--text-primary)]" />
               )}
             </button>
           </div>
@@ -154,43 +144,34 @@ export function Navbar({ currentSection, onSectionChange }: NavbarProps) {
             className="fixed inset-0 z-40 md:hidden"
           >
             <div
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-20 left-4 right-4 glass rounded-2xl p-6"
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute top-24 left-4 right-4 glass rounded-3xl p-8"
             >
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-4">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
-                    className={`px-4 py-3 text-left rounded-xl transition-all ${
+                    className={`px-4 py-3 text-left rounded-2xl transition-all ${
                       currentSection === item.id
-                        ? 'bg-[#00d4aa15] text-[#00d4aa] font-medium'
-                        : 'text-[#8a8a9a] hover:bg-[#ffffff08]'
+                        ? 'bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold'
+                        : 'text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]'
                     }`}
                   >
                     {item.label}
                   </button>
                 ))}
                 <hr className="my-2 border-[var(--border-color)]" />
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[var(--border-color)] text-[var(--text-secondary)] font-medium"
-                  >
-                    {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                    {theme === 'dark' ? '亮色' : '暗色'}
-                  </button>
-                  <button className="px-4 py-3 rounded-xl bg-gradient-to-r from-[#00d4aa] to-[#4facfe] text-white font-medium">
-                    订阅更新
-                  </button>
-                </div>
+                <button className="px-4 py-4 rounded-2xl bg-[var(--accent-secondary)] text-white font-bold uppercase tracking-widest">
+                  订阅更新
+                </button>
               </div>
             </motion.div>
           </motion.div>
