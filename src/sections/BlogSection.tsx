@@ -198,7 +198,7 @@ export function BlogSection() {
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full bg-white/5 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-[var(--text-secondary)]"
+                      className="px-3 py-1 rounded-full bg-[var(--bg-secondary)] backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-[var(--text-secondary)] border border-[var(--border-muted)]"
                     >
                       {tag}
                     </span>
@@ -216,7 +216,7 @@ export function BlogSection() {
                 </p>
 
                 {/* Meta */}
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                <div className="flex items-center justify-between pt-4 border-t border-[var(--border-muted)]">
                   <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
                     <Calendar className="w-3 h-3" />
                     {post.date}
@@ -230,7 +230,7 @@ export function BlogSection() {
 
               {/* Hover Border Effect */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_rgba(163,177,138,0.2)]" />
+                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_var(--border-color)]" />
               </div>
             </motion.article>
           ))}
@@ -260,7 +260,7 @@ export function BlogSection() {
                 className={`relative w-full ${readingMode ? 'h-full overflow-auto' : 'max-w-4xl max-h-[90vh] overflow-auto rounded-3xl'} bg-[var(--bg-primary)]`}
               >
                 {/* Reading Progress Bar */}
-                <div className="sticky top-0 left-0 right-0 h-1 bg-white/5 z-20">
+                <div className="sticky top-0 left-0 right-0 h-1 bg-[var(--bg-secondary)] z-20">
                   <motion.div 
                     className="h-full bg-[var(--accent-primary)]"
                     initial={{ width: '0%' }}
@@ -282,16 +282,16 @@ export function BlogSection() {
                   <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedPost(null)}
-                      className="w-12 h-12 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center hover:bg-black/40 transition-all border border-white/10"
+                      className="w-12 h-12 rounded-full bg-[var(--bg-card)]/40 backdrop-blur-md flex items-center justify-center hover:bg-[var(--bg-card)]/60 transition-all border border-[var(--border-muted)]"
                     >
-                      <X className="w-6 h-6 text-white" />
+                      <X className="w-6 h-6 text-[var(--text-primary)]" />
                     </button>
                     <button
                       onClick={() => setReadingMode(!readingMode)}
-                      className="px-6 py-2.5 rounded-full bg-black/20 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-white hover:bg-black/40 transition-all border border-white/10 flex items-center gap-2"
+                      className="px-6 py-2.5 rounded-full bg-[var(--bg-card)]/40 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-[var(--text-primary)] hover:bg-[var(--bg-card)]/60 transition-all border border-[var(--border-muted)] flex items-center gap-2"
                     >
                       <BookOpen className="w-4 h-4" />
-                      {readingMode ? 'Exit Reading' : 'Reading Mode'}
+                      {readingMode ? '退出阅读' : '沉浸模式'}
                     </button>
                   </div>
 
@@ -333,7 +333,7 @@ export function BlogSection() {
                   </blockquote>
 
                   {/* Content with Drop Cap */}
-                  <div className="prose prose-invert prose-lg max-w-none">
+                  <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
                     <div 
                       className="drop-cap text-[var(--text-secondary)] leading-[2] whitespace-pre-line text-justify tracking-wide font-light"
                       style={{ 
@@ -342,7 +342,7 @@ export function BlogSection() {
                       }}
                       dangerouslySetInnerHTML={{ 
                         __html: selectedContent.content
-                          .replace(/## (.*)/g, '<h2 class="text-3xl font-serif text-[var(--text-primary)] mt-16 mb-8 pb-4 border-b border-white/5">$1</h2>')
+                          .replace(/## (.*)/g, '<h2 class="text-3xl font-serif text-[var(--text-primary)] mt-16 mb-8 pb-4 border-b border-[var(--border-muted)]">$1</h2>')
                           .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--text-primary)] font-bold">$1</strong>')
                           .replace(/`([^`]+)`/g, '<code class="px-2 py-1 rounded bg-[var(--bg-secondary)] text-[var(--accent-primary)] text-sm font-mono">$1</code>')
                       }}
@@ -350,7 +350,7 @@ export function BlogSection() {
                   </div>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-3 mt-20 pt-10 border-t border-white/5">
+                  <div className="flex flex-wrap gap-3 mt-20 pt-10 border-t border-[var(--border-muted)]">
                     {selectedPostData.tags.map((tag) => (
                       <span
                         key={tag}

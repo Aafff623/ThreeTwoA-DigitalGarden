@@ -34,29 +34,29 @@ const initialTasks: Task[] = planItems.map(item => ({
 }));
 
 const priorityColors = {
-  'P0': '#bc6c25', // Terracotta
-  'P1': '#dda15e', // Wheat
-  'P2': '#a3b18a', // Sage
+  'P0': 'var(--p0-color)',
+  'P1': 'var(--p1-color)',
+  'P2': 'var(--p2-color)',
 };
 
 const statusConfig = {
   'in-progress': {
     label: '生长中',
     icon: Circle,
-    color: '#a3b18a',
-    bgColor: 'rgba(163, 177, 138, 0.1)'
+    color: 'var(--status-growing)',
+    bgColor: 'var(--bg-secondary)'
   },
   'planned': {
     label: '播种计划',
     icon: Clock,
-    color: '#dda15e',
-    bgColor: 'rgba(221, 161, 94, 0.1)'
+    color: 'var(--status-planned)',
+    bgColor: 'var(--bg-secondary)'
   },
   'completed': {
     label: '已收获',
     icon: CheckCircle2,
-    color: '#606c38',
-    bgColor: 'rgba(96, 108, 56, 0.1)'
+    color: 'var(--status-harvested)',
+    bgColor: 'var(--bg-secondary)'
   },
 };
 
@@ -124,7 +124,7 @@ export function PlanSection() {
               <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">Harvest Progress</span>
             </div>
             <div className="text-3xl font-serif text-[var(--text-primary)]">{stats.progressPercent}%</div>
-            <div className="mt-4 h-1 bg-white/5 rounded-full overflow-hidden">
+            <div className="mt-4 h-1 bg-[var(--bg-secondary)] rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-[var(--accent-primary)] rounded-full"
                 initial={{ width: 0 }}
@@ -172,7 +172,7 @@ export function PlanSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 + columnIndex * 0.1 }}
-                className="bg-[var(--bg-secondary)]/50 rounded-[2rem] p-6 border border-white/5"
+                className="bg-[var(--bg-secondary)]/50 rounded-[2rem] p-6 border border-[var(--border-muted)]"
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                   e.preventDefault();
@@ -212,7 +212,7 @@ export function PlanSection() {
                           e.dataTransfer.setData('taskId', task.id);
                           setDraggedTask(task.id);
                         }}
-                        className={`group relative bg-[var(--bg-card)] rounded-2xl p-6 cursor-grab active:cursor-grabbing border border-white/5 hover:border-[var(--accent-primary)]/20 transition-all duration-500 hover-lift ${
+                        className={`group relative bg-[var(--bg-card)] rounded-2xl p-6 cursor-grab active:cursor-grabbing border border-[var(--border-muted)] hover:border-[var(--accent-primary)]/20 transition-all duration-500 hover-lift ${
                           draggedTask === task.id ? 'opacity-50 scale-105 shadow-2xl z-20' : ''
                         }`}
                       >
@@ -256,7 +256,7 @@ export function PlanSection() {
                             <span className="text-[var(--text-muted)]">Growth</span>
                             <span className="text-[var(--accent-primary)]">{task.progress}%</span>
                           </div>
-                          <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-1 bg-[var(--bg-secondary)] rounded-full overflow-hidden">
                             <motion.div 
                               className="h-full rounded-full"
                               style={{ backgroundColor: config.color }}

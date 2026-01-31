@@ -116,7 +116,7 @@ export function ProjectsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/40 to-transparent" />
                 
                 {/* Project Number */}
-                <div className="absolute top-6 left-6 w-10 h-10 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10">
+                <div className="absolute top-6 left-6 w-10 h-10 rounded-full bg-[var(--bg-card)] backdrop-blur-md flex items-center justify-center border border-[var(--border-muted)]">
                   <span className="text-[var(--accent-primary)] font-serif italic text-sm">{project.id}</span>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export function ProjectsSection() {
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 rounded-full bg-white/5 text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]"
+                      className="px-3 py-1 rounded-full bg-[var(--bg-secondary)] text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] border border-[var(--border-muted)]"
                     >
                       {tech}
                     </span>
@@ -145,7 +145,7 @@ export function ProjectsSection() {
 
               {/* Border Glow Effect */}
               <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_0_1px_rgba(163,177,138,0.2)]" />
+                <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_0_1px_var(--border-color)]" />
               </div>
             </motion.div>
           ))}
@@ -177,9 +177,9 @@ export function ProjectsSection() {
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[#ffffff08] hover:bg-[#ffffff15] flex items-center justify-center transition-colors"
+                  className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] flex items-center justify-center transition-colors border border-[var(--border-muted)]"
                 >
-                  <X className="w-5 h-5 text-[#8a8a9a]" />
+                  <X className="w-5 h-5 text-[var(--text-muted)]" />
                 </button>
 
                 {/* Hero Section */}
@@ -205,20 +205,20 @@ export function ProjectsSection() {
                       <div className="w-1 h-1 rounded-full bg-[var(--accent-primary)]" />
                       Live Demonstration
                     </h3>
-                    <div className="relative rounded-[2.5rem] overflow-hidden border border-white/5 bg-[var(--bg-secondary)] p-2 shadow-2xl">
+                    <div className="relative rounded-[2.5rem] overflow-hidden border border-[var(--border-muted)] bg-[var(--bg-secondary)] p-2 shadow-2xl">
                       {/* Device Frame Decoration */}
                       <div className="bg-[var(--bg-primary)] rounded-[2rem] overflow-hidden">
-                        <div className="flex items-center justify-between px-6 py-4 bg-[var(--bg-card)] border-b border-white/5">
+                        <div className="flex items-center justify-between px-6 py-4 bg-[var(--bg-card)] border-b border-[var(--border-muted)]">
                           <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-white/5" />
-                            <div className="w-3 h-3 rounded-full bg-white/5" />
-                            <div className="w-3 h-3 rounded-full bg-white/5" />
+                            <div className="w-3 h-3 rounded-full bg-[var(--bg-secondary)]" />
+                            <div className="w-3 h-3 rounded-full bg-[var(--bg-secondary)]" />
+                            <div className="w-3 h-3 rounded-full bg-[var(--bg-secondary)]" />
                           </div>
-                          <div className="px-4 py-1 rounded-full bg-white/5 text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] flex items-center gap-2">
+                          <div className="px-4 py-1 rounded-full bg-[var(--bg-secondary)] text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] flex items-center gap-2 border border-[var(--border-muted)]">
                             <span className="w-1 h-1 rounded-full bg-[var(--accent-primary)]" />
                             Interactive Module
                           </div>
-                          <div className="w-12 h-1 bg-white/5 rounded-full" />
+                          <div className="w-12 h-1 bg-[var(--bg-secondary)] rounded-full" />
                         </div>
                         <div className="aspect-video bg-[var(--bg-primary)] relative flex items-center justify-center overflow-hidden group/demo">
                           <div className="text-center relative z-20">
@@ -233,21 +233,21 @@ export function ProjectsSection() {
 
                   {/* Detail Cards */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-white/5 hover-lift">
+                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-[var(--border-muted)] hover-lift">
                       <div className="w-12 h-12 rounded-2xl bg-[var(--bg-primary)] flex items-center justify-center mb-6">
                         <Palette className="w-6 h-6 text-[var(--accent-primary)]" />
                       </div>
                       <h4 className="text-sm font-bold uppercase tracking-widest text-[var(--text-primary)] mb-4">设计哲学</h4>
                       <p className="text-sm text-[var(--text-secondary)] font-light leading-relaxed">{selectedDetails.philosophy}</p>
                     </div>
-                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-white/5 hover-lift">
+                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-[var(--border-muted)] hover-lift">
                       <div className="w-12 h-12 rounded-2xl bg-[var(--bg-primary)] flex items-center justify-center mb-6">
                         <Code2 className="w-6 h-6 text-[var(--accent-secondary)]" />
                       </div>
                       <h4 className="text-sm font-bold uppercase tracking-widest text-[var(--text-primary)] mb-4">技术栈选型</h4>
                       <p className="text-sm text-[var(--text-secondary)] font-light leading-relaxed">{selectedDetails.techStack}</p>
                     </div>
-                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-white/5 hover-lift">
+                    <div className="bg-[var(--bg-secondary)] rounded-3xl p-8 hover:bg-[var(--bg-tertiary)] transition-all duration-500 border border-[var(--border-muted)] hover-lift">
                       <div className="w-12 h-12 rounded-2xl bg-[var(--bg-primary)] flex items-center justify-center mb-6">
                         <Puzzle className="w-6 h-6 text-[var(--accent-tertiary)]" />
                       </div>
@@ -269,7 +269,7 @@ export function ProjectsSection() {
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: idx * 0.05 }}
-                          className="group aspect-square bg-[var(--bg-secondary)] rounded-2xl flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-[var(--bg-tertiary)] transition-all duration-500 hover-lift overflow-hidden relative border border-white/5"
+                          className="group aspect-square bg-[var(--bg-secondary)] rounded-2xl flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-[var(--bg-tertiary)] transition-all duration-500 hover-lift overflow-hidden relative border border-[var(--border-muted)]"
                         >
                           <item.icon className="w-6 h-6 text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] transition-colors duration-500 relative z-10" />
                           <span className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors duration-500 relative z-10 font-bold">{item.label}</span>
@@ -280,11 +280,11 @@ export function ProjectsSection() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-6 mt-16">
-                    <button className="flex-1 py-4 rounded-full bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                    <button className="flex-1 py-4 rounded-full bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-[var(--glow-primary)]">
                       <ExternalLink className="w-4 h-4" />
                       Live Demo
                     </button>
-                    <button className="flex-1 py-4 rounded-full bg-transparent text-[var(--text-primary)] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[var(--bg-secondary)] transition-all border border-white/10">
+                    <button className="flex-1 py-4 rounded-full bg-transparent text-[var(--text-primary)] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[var(--bg-secondary)] transition-all border border-[var(--border-color)]">
                       <Github className="w-4 h-4" />
                       Source Code
                     </button>

@@ -64,7 +64,7 @@ export function HomeSection({ onSectionChange }: HomeSectionProps) {
             <PixelGlitchText 
                 text="ThreeTwoA"
                 fontSize={isMobile ? 60 : 120}
-                particleColor="#00f2ff"
+                particleColor="var(--accent-primary)"
                 className="mb-2"
                 forceMultiplier={4}
                 mouseRadius={100}
@@ -73,7 +73,7 @@ export function HomeSection({ onSectionChange }: HomeSectionProps) {
                 text="Digital Garden"
                 fontSize={isMobile ? 40 : 80}
                 italic
-                particleColor="#7000ff"
+                particleColor="var(--accent-secondary)"
                 className="opacity-80"
                 forceMultiplier={3}
                 mouseRadius={80}
