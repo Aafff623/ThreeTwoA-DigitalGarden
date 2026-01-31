@@ -70,7 +70,7 @@ class Particle {
   }
 }
 
-export const PixelGlitchText: React.FC<PixelGlitchTextProps> = ({
+export const PixelGlitchText: React.FC<PixelGlitchTextProps> = React.memo(({
   text,
   className = "",
   fontSize = 80,
@@ -105,10 +105,14 @@ export const PixelGlitchText: React.FC<PixelGlitchTextProps> = ({
 
     // 处理高分屏 (Retina)
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+    // Only update dimensions if they changed to avoid clearing canvas unnecessarily
+    if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+    }
+    
     ctx.scale(dpr, dpr);
 
     // 重新绘制文字用于提取像素
@@ -137,6 +141,11 @@ export const PixelGlitchText: React.FC<PixelGlitchTextProps> = ({
       }
     }
     particles.current = newParticles;
+
+    // Immediately draw the initial state to prevent flash
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+    newParticles.forEach(p => p.draw(ctx));
   }, [text, fontSize, fontFamily, gridSize, particleColor, italic, returnSpeed]);
 
   useEffect(() => {
@@ -192,4 +201,4 @@ export const PixelGlitchText: React.FC<PixelGlitchTextProps> = ({
       />
     </div>
   );
-};
+});

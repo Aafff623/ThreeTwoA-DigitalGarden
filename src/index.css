@@ -6,76 +6,7 @@
 
 @layer base {
   :root {
-    /* 默认亮色模式 (Light Mode) */
-    --bg-primary: #f8fafc;      /* 柔和浅灰蓝 */
-    --bg-secondary: #f1f5f9;    /* 浅蓝灰 */
-    --bg-tertiary: #e2e8f0;     /* 中蓝灰 */
-    --bg-card: rgba(255, 255, 255, 0.8);
-    
-    --accent-primary: #0ea5e9;    /* 活力天蓝 (Cyber Blue) */
-    --accent-secondary: #8b5cf6;  /* 幻影紫 (Vibrant Purple) */
-    --accent-tertiary: #ec4899;   /* 魅力粉 (Energetic Pink) */
-    
-    --text-primary: #0f172a;      /* 深蓝黑 (High Contrast) */
-    --text-secondary: #475569;    /* 灰蓝 */
-    --text-muted: #94a3b8;        /* 浅灰蓝 */
-    
-    --border-color: rgba(14, 165, 233, 0.15);
-    --border-muted: rgba(0, 0, 0, 0.05);
-    --glow-primary: rgba(14, 165, 233, 0.3);
-    --glow-secondary: rgba(139, 92, 246, 0.3);
-
-    /* 模块专属颜色 - 亮色 */
-    --p0-color: #bc6c25;
-    --p1-color: #dda15e;
-    --p2-color: #6a994e;
-    --status-growing: #6a994e;
-    --status-planned: #dda15e;
-    --status-harvested: #386641;
-    
-    --cat-tools: #0284c7;
-    --cat-inspire: #7c3aed;
-    --cat-learn: #ea580c;
-    
-    /* 字体系统 */
-    --font-serif: 'Instrument Serif', serif;
-    --font-sans: 'Inter', 'Noto Sans SC', sans-serif;
-
-    /* 渐变系统 - 亮色更加明亮 */
-    --gradient-hero: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
-    --gradient-glow: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%);
-    --gradient-dark: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-
-    /* shadcn 变量映射 - Light */
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 199 89% 48%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 258 90% 66%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 199 89% 48%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 199 89% 48%;
-    --radius: 0.5rem;
-
-    /* 动效系统 */
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dark {
-    /* 赛博霓虹活力系统 (Dark Mode) */
+    /* 赛博霓虹活力系统 (Dark Mode Default) */
     --bg-primary: #030303;      /* 极简深黑 */
     --bg-secondary: #0a0a0c;    /* 钛黑 */
     --bg-tertiary: #121217;     /* 深蓝黑 */
@@ -90,27 +21,24 @@
     --text-muted: #5b5b7a;        /* 深空蓝 */
     
     --border-color: rgba(0, 242, 255, 0.1);
-    --border-muted: rgba(255, 255, 255, 0.05);
     --glow-primary: rgba(0, 242, 255, 0.4);
     --glow-secondary: rgba(112, 0, 255, 0.4);
 
-    /* 模块专属颜色 - 暗色 */
-    --p0-color: #00f2ff;
-    --p1-color: #7000ff;
-    --p2-color: #ff00d9;
-    --status-growing: #00f2ff;
-    --status-planned: #7000ff;
-    --status-harvested: #ff00d9;
+    /* Glass Effect Variables */
+    --glass-bg: rgba(10, 10, 12, 0.7);
+    --glass-border: rgba(0, 242, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
     
-    --cat-tools: #00f2ff;
-    --cat-inspire: #7000ff;
-    --cat-learn: #ff00d9;
+    /* 字体系统 */
+    --font-serif: 'Instrument Serif', serif;
+    --font-sans: 'Inter', 'Noto Sans SC', sans-serif;
 
+    /* 渐变系统 - 更加动感 */
     --gradient-hero: linear-gradient(135deg, #00f2ff 0%, #7000ff 100%);
     --gradient-glow: radial-gradient(circle, rgba(0,242,255,0.2) 0%, transparent 70%);
     --gradient-dark: linear-gradient(180deg, #030303 0%, #0a0a0c 100%);
 
-    /* shadcn 变量映射 - Dark */
+    /* shadcn 变量映射 */
     --background: 240 10% 2%;
     --foreground: 0 0% 100%;
     --card: 240 10% 4%;
@@ -130,6 +58,63 @@
     --border: 240 10% 12%;
     --input: 240 10% 12%;
     --ring: 185 100% 50%;
+    --radius: 0.5rem;
+
+    /* 动效系统 - 更加犀利 */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="light"] {
+    /* Light Mode Variables */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --bg-card: #ffffff;
+    
+    --accent-primary: #0891b2;    /* Cyan-600: Darker for contrast */
+    --accent-secondary: #7c3aed;  /* Violet-600 */
+    --accent-tertiary: #db2777;   /* Pink-600 */
+    
+    --text-primary: #1a202c;      /* Gray-900 */
+    --text-secondary: #4a5568;    /* Gray-700 */
+    --text-muted: #a0aec0;        /* Gray-400 */
+    
+    --border-color: rgba(0, 0, 0, 0.1);
+    --glow-primary: rgba(8, 145, 178, 0.2);
+    --glow-secondary: rgba(124, 58, 237, 0.2);
+
+    /* Glass Effect Variables - Light */
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+
+    /* Gradients - Light */
+    --gradient-hero: linear-gradient(135deg, #0891b2 0%, #7c3aed 100%);
+    --gradient-glow: radial-gradient(circle, rgba(8, 145, 178, 0.1) 0%, transparent 70%);
+    --gradient-dark: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+
+    /* shadcn override for light mode if needed */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 189 94% 43%; /* Cyan 600-ish */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 189 94% 43%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 189 94% 43%;
   }
 }
 
@@ -208,26 +193,15 @@
   /* 有机质感卡片 - 调整为赛博玻璃 */
   .glass {
     backdrop-filter: blur(12px);
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-  }
-
-  .dark .glass {
-    background: rgba(10, 10, 12, 0.7);
-    border: 1px solid rgba(0, 242, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
   }
   
   .glass-light {
     backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.4);
-    border: 1px solid var(--border-color);
-  }
-
-  .dark .glass-light {
-    background: rgba(18, 18, 23, 0.4);
-    border: 1px solid rgba(112, 0, 255, 0.1);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
   }
 
   /* 颗粒噪声纹理 */
@@ -247,14 +221,8 @@
     z-index: 10;
   }
   
-  /* 聚光灯效果 */
+  /* 聚光灯效果 - 调弱 */
   .spotlight {
-    box-shadow: 
-      0 -20px 60px -20px var(--glow-primary),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .dark .spotlight {
     box-shadow: 
       0 -20px 60px -20px var(--glow-primary),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.02);

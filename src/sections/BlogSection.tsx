@@ -151,7 +151,7 @@ export function BlogSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-primary)] bg-opacity-10 text-[var(--accent-primary)] text-xs font-bold uppercase tracking-[0.2em] mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-primary)] text-[var(--bg-primary)] text-sm font-medium mb-6">
             Garden Journal
           </span>
           <h2 className="text-5xl sm:text-6xl font-serif text-[var(--text-primary)] mb-6">
@@ -187,8 +187,8 @@ export function BlogSection() {
                   alt={post.title}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/80 to-transparent" />
+                {/* Dark Gradient Overlay for consistent text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
               </div>
 
               {/* Content */}
@@ -198,7 +198,7 @@ export function BlogSection() {
                   {post.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full bg-[var(--bg-secondary)] backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-[var(--text-secondary)] border border-[var(--border-muted)]"
+                      className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-gray-200"
                     >
                       {tag}
                     </span>
@@ -206,18 +206,18 @@ export function BlogSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-serif text-[var(--text-primary)] mb-4 line-clamp-2 group-hover:text-[var(--accent-primary)] transition-colors duration-500">
+                <h3 className="text-2xl font-serif text-white mb-4 line-clamp-2 group-hover:text-[var(--accent-primary)] transition-colors duration-500">
                   {post.title}
                 </h3>
 
                 {/* Summary */}
-                <p className="text-sm text-[var(--text-secondary)] mb-6 line-clamp-2 font-light leading-relaxed">
+                <p className="text-sm text-gray-300 mb-6 line-clamp-2 font-light leading-relaxed">
                   {post.summary}
                 </p>
 
                 {/* Meta */}
-                <div className="flex items-center justify-between pt-4 border-t border-[var(--border-muted)]">
-                  <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">
+                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                  <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                     <Calendar className="w-3 h-3" />
                     {post.date}
                   </span>
@@ -230,7 +230,7 @@ export function BlogSection() {
 
               {/* Hover Border Effect */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_var(--border-color)]" />
+                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_rgba(163,177,138,0.2)]" />
               </div>
             </motion.article>
           ))}
@@ -260,7 +260,7 @@ export function BlogSection() {
                 className={`relative w-full ${readingMode ? 'h-full overflow-auto' : 'max-w-4xl max-h-[90vh] overflow-auto rounded-3xl'} bg-[var(--bg-primary)]`}
               >
                 {/* Reading Progress Bar */}
-                <div className="sticky top-0 left-0 right-0 h-1 bg-[var(--bg-secondary)] z-20">
+                <div className="sticky top-0 left-0 right-0 h-1 bg-white/5 z-20">
                   <motion.div 
                     className="h-full bg-[var(--accent-primary)]"
                     initial={{ width: '0%' }}
@@ -276,22 +276,22 @@ export function BlogSection() {
                     alt={selectedPostData.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   
                   {/* Controls */}
                   <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedPost(null)}
-                      className="w-12 h-12 rounded-full bg-[var(--bg-card)]/40 backdrop-blur-md flex items-center justify-center hover:bg-[var(--bg-card)]/60 transition-all border border-[var(--border-muted)]"
+                      className="w-12 h-12 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center hover:bg-black/40 transition-all border border-white/10"
                     >
-                      <X className="w-6 h-6 text-[var(--text-primary)]" />
+                      <X className="w-6 h-6 text-white" />
                     </button>
                     <button
                       onClick={() => setReadingMode(!readingMode)}
-                      className="px-6 py-2.5 rounded-full bg-[var(--bg-card)]/40 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-[var(--text-primary)] hover:bg-[var(--bg-card)]/60 transition-all border border-[var(--border-muted)] flex items-center gap-2"
+                      className="px-6 py-2.5 rounded-full bg-black/20 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-white hover:bg-black/40 transition-all border border-white/10 flex items-center gap-2"
                     >
                       <BookOpen className="w-4 h-4" />
-                      {readingMode ? '退出阅读' : '沉浸模式'}
+                      {readingMode ? 'Exit Reading' : 'Reading Mode'}
                     </button>
                   </div>
 
@@ -307,10 +307,10 @@ export function BlogSection() {
                         </span>
                       ))}
                     </div>
-                    <h1 className="text-4xl sm:text-5xl font-serif text-[var(--text-primary)] mb-6 leading-tight">
+                    <h1 className="text-4xl sm:text-5xl font-serif text-white mb-6 leading-tight">
                       {selectedPostData.title}
                     </h1>
-                    <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                    <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-300">
                       <span className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-[var(--accent-primary)]" />
                         {selectedPostData.date}
@@ -333,7 +333,7 @@ export function BlogSection() {
                   </blockquote>
 
                   {/* Content with Drop Cap */}
-                  <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
+                  <div className="prose prose-invert prose-lg max-w-none">
                     <div 
                       className="drop-cap text-[var(--text-secondary)] leading-[2] whitespace-pre-line text-justify tracking-wide font-light"
                       style={{ 
@@ -342,7 +342,7 @@ export function BlogSection() {
                       }}
                       dangerouslySetInnerHTML={{ 
                         __html: selectedContent.content
-                          .replace(/## (.*)/g, '<h2 class="text-3xl font-serif text-[var(--text-primary)] mt-16 mb-8 pb-4 border-b border-[var(--border-muted)]">$1</h2>')
+                          .replace(/## (.*)/g, '<h2 class="text-3xl font-serif text-[var(--text-primary)] mt-16 mb-8 pb-4 border-b border-[var(--border-color)]">$1</h2>')
                           .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--text-primary)] font-bold">$1</strong>')
                           .replace(/`([^`]+)`/g, '<code class="px-2 py-1 rounded bg-[var(--bg-secondary)] text-[var(--accent-primary)] text-sm font-mono">$1</code>')
                       }}
@@ -350,7 +350,7 @@ export function BlogSection() {
                   </div>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-3 mt-20 pt-10 border-t border-[var(--border-muted)]">
+                  <div className="flex flex-wrap gap-3 mt-20 pt-10 border-t border-[var(--border-color)]">
                     {selectedPostData.tags.map((tag) => (
                       <span
                         key={tag}

@@ -22,9 +22,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-muted)]">
+    <footer className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-color)]">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--accent-primary)]/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-secondary)]/30 to-transparent pointer-events-none" />
       
       <div className="max-w-6xl mx-auto relative">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
@@ -36,7 +36,7 @@ export function Footer() {
             className="flex-1"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center">
                 <Flower2 className="w-5 h-5 text-[var(--bg-primary)]" />
               </div>
               <span className="font-semibold text-lg text-[var(--text-primary)]">ThreeTwoA Digital Garden 🌿</span>
@@ -77,7 +77,7 @@ export function Footer() {
               <a
                 key={social.label}
                 href={social.href}
-                className="w-10 h-10 rounded-lg bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)]/10 flex items-center justify-center transition-all duration-300 group border border-[var(--border-muted)]"
+                className="w-10 h-10 rounded-lg bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)]/10 flex items-center justify-center transition-all duration-300 group"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] transition-colors" />
@@ -87,7 +87,7 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-[var(--border-muted)] my-8" />
+        <div className="h-px bg-[var(--border-color)] my-8" />
 
         {/* Copyright */}
         <motion.div
@@ -99,19 +99,18 @@ export function Footer() {
         >
           <p className="text-sm text-[var(--text-muted)] flex items-center gap-1">
             © {currentYear} ThreeTwoA Digital Garden. Made with
-            <Heart className="w-4 h-4 text-[var(--accent-tertiary)] mx-1" />
+            <Heart className="w-4 h-4 text-[#ff6b6b] mx-1" />
             and curiosity.
           </p>
           <div className="flex items-center gap-4">
             <span className="text-sm text-[var(--text-muted)]">一切都在生长中 🌱</span>
             <button
               onClick={scrollToTop}
-              className="w-8 h-8 rounded-lg bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)]/10 flex items-center justify-center transition-all group border border-[var(--border-muted)]"
+              className="w-8 h-8 rounded-lg bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)]/10 flex items-center justify-center transition-all group"
             >
               <ArrowUp className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] transition-colors" />
             </button>
           </div>
-        </div>
         </motion.div>
       </div>
     </footer>

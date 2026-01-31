@@ -102,7 +102,7 @@ export function ChatNotesSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-secondary)] opacity-[0.15] text-[var(--accent-secondary)] text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--accent-secondary)] text-[var(--bg-primary)] text-sm font-medium mb-4">
             ChatNotes
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
@@ -185,9 +185,10 @@ export function ChatNotesSection() {
 
                 {/* Messages - Blackboard Style */}
                 <div 
-                  className="rounded-2xl p-8 min-h-[500px] border border-[var(--border-muted)] shadow-inner"
+                  className="rounded-2xl p-8 min-h-[500px] border border-[var(--border-color)]"
                   style={{
-                    background: 'var(--bg-secondary)',
+                    background: 'var(--bg-tertiary)',
+                    boxShadow: 'inset 0 2px 20px rgba(0,0,0,0.05)'
                   }}
                 >
                   <div className="space-y-8">
@@ -216,7 +217,7 @@ export function ChatNotesSection() {
                                 ? 'bg-[var(--accent-primary)]/10'
                                 : message.type === 'thought'
                                 ? 'bg-[var(--accent-secondary)]/10'
-                                : 'bg-[var(--bg-card)] border border-[var(--border-muted)]'
+                                : 'bg-[var(--bg-secondary)] border border-[var(--border-color)]'
                             }`}
                           >
                             {message.type === 'question' ? (
@@ -231,12 +232,12 @@ export function ChatNotesSection() {
                           {/* Message Bubble */}
                           <div className={`max-w-[85%] ${message.type === 'answer' ? 'text-right' : ''}`}>
                             <div
-                              className={`inline-block px-6 py-4 rounded-2xl text-sm leading-relaxed font-mono shadow-sm border ${
+                              className={`inline-block px-6 py-4 rounded-2xl text-sm leading-relaxed font-mono shadow-sm ${
                                 message.type === 'question'
-                                  ? 'bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border-[var(--accent-primary)]/20'
+                                  ? 'bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] border border-[var(--accent-primary)]/20'
                                   : message.type === 'thought'
-                                  ? 'bg-[var(--accent-secondary)]/10 text-[var(--accent-secondary)] border-[var(--accent-secondary)]/20'
-                                  : 'bg-[var(--bg-card)] text-[var(--text-primary)] border-[var(--border-muted)]'
+                                  ? 'bg-[var(--accent-secondary)]/10 text-[var(--accent-secondary)] border border-[var(--accent-secondary)]/20'
+                                  : 'bg-[var(--bg-card)] text-[var(--text-primary)] border border-[var(--border-color)]'
                               }`}
                             >
                               {typingMsg?.displayContent || ''}

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowDown, Leaf, BookOpen, FolderGit2, Bookmark } from 'lucide-react';
 import { blogPosts, projects, resources } from '@/data';
 import { PixelGlitchText } from '@/components/PixelGlitchText';
+import { useTheme } from '@/context/ThemeContext';
 
 interface HomeSectionProps {
   onSectionChange: (section: string) => void;
@@ -17,6 +18,7 @@ const manifestoItems = [
 ];
 
 export function HomeSection({ onSectionChange }: HomeSectionProps) {
+  const { theme } = useTheme();
   const [currentManifesto, setCurrentManifesto] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -37,6 +39,9 @@ export function HomeSection({ onSectionChange }: HomeSectionProps) {
   const latestBlog = blogPosts[0];
   const featuredProject = projects[0];
   const featuredResource = resources[0];
+
+  const primaryParticleColor = theme === 'dark' ? '#00f2ff' : '#0891b2';
+  const secondaryParticleColor = theme === 'dark' ? '#7000ff' : '#7c3aed';
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col z-10 noise-bg">
@@ -64,7 +69,7 @@ export function HomeSection({ onSectionChange }: HomeSectionProps) {
             <PixelGlitchText 
                 text="ThreeTwoA"
                 fontSize={isMobile ? 60 : 120}
-                particleColor="var(--accent-primary)"
+                particleColor={primaryParticleColor}
                 className="mb-2"
                 forceMultiplier={4}
                 mouseRadius={100}
@@ -73,7 +78,7 @@ export function HomeSection({ onSectionChange }: HomeSectionProps) {
                 text="Digital Garden"
                 fontSize={isMobile ? 40 : 80}
                 italic
-                particleColor="var(--accent-secondary)"
+                particleColor={secondaryParticleColor}
                 className="opacity-80"
                 forceMultiplier={3}
                 mouseRadius={80}
