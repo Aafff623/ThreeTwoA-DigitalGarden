@@ -5,7 +5,7 @@
 [![Digital Garden](https://img.shields.io/badge/Digital-Garden-00f2ff?style=for-the-badge&logo=target)](https://github.com/Aafff623/ThreeTwoA-DigitalGarden)
 [![React](https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7-646cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
-[![Cyber Neon](https://img.shields.io/badge/Theme-Cyber_Neon-ff00d9?style=for-the-badge)](https://github.com/Aafff623/ThreeTwoA-DigitalGarden)
+[![Theme](https://img.shields.io/badge/Theme-Day%20%26%20Night-ff00d9?style=for-the-badge)](https://github.com/Aafff623/ThreeTwoA-DigitalGarden)
 
 ## ✨ 项目愿景
 
@@ -17,13 +17,20 @@
 
 ## 🎨 核心设计与交互
 
-### 🌌 赛博霓虹视觉体系 (Cyber Neon Theme)
+### 🌗 双重视觉体系 (Dual Visual System)
+支持 **Light (日间)** 与 **Dark (夜间)** 模式的无缝切换，基于 `next-themes` 实现。
+
+#### 🌌 赛博霓虹 (Dark Mode)
 - **极简深邃背景**: 使用 `#030303` 作为基底，衬托出霓虹色彩的爆发力。
 - **高饱和荧光色**: 
   - 🧪 **Cyber Cyan (#00f2ff)**: 科技感的冷色调核心。
   - ⚡ **Electric Purple (#7000ff)**: 充满能量的电力紫。
   - 🌅 **Aurora Pink (#ff00d9)**: 迷幻的极光粉。
-- **毛玻璃 2.0 (Glassmorphism)**: 优化了磨砂质感与边缘光晕，卡片更具浮空感与呼吸感。
+
+#### ☀️ 清新日光 (Light Mode)
+- **高对比度设计**: 针对阅读体验优化，确保文字清晰易读。
+- **纯净背景**: 配合深色渐变覆盖层，保持视觉层次感。
+- **精致排版**: 调整字重与间距，避免视觉拥挤。
 
 ### 👾 像素抽离交互 (Pixel Glitch Effect)
 受 Trae.ai 启发，首页标题集成了基于 **Particle Physics (粒子物理)** 的实时交互效果：
@@ -63,8 +70,8 @@
 | **核心框架** | React 19 + TypeScript 5 |
 | **构建工具** | Vite 7 (高性能热更新) |
 | **样式方案** | Tailwind CSS 3 + PostCSS |
+| **主题管理** | Next Themes (暗黑/明亮模式切换) |
 | **动画引擎** | Framer Motion (手势交互与补间动画) |
-| **UI 组件库** | Radix UI + Shadcn/ui (无障碍与高度可定制) |
 | **物理动效** | Custom Canvas Particle Engine |
 | **图标体系** | Lucide React |
 
